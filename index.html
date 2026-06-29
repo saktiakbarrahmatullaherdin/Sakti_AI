@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sakti AI - Asisten Belajar Cerdas</title>
+  <!-- Modern Typography: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Remix Icons for modern UI icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Glowing Circles -->
+  <div class="background-animation">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+  <!-- ==========================================
+       SCREEN 1: WELCOME (SPLASH PAGE)
+       ========================================== -->
+  <section id="screen-welcome" class="screen active">
+    <div class="glass-card welcome-card">
+      <div class="logo-container">
+        <div class="ai-icon">
+          <!-- Simple SVG AI Icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+            <path d="M12 12 2.1 7.1"></path>
+            <path d="m12 12 9.9 4.9"></path>
+          </svg>
+        </div>
+      </div>
+      <h1 class="title">Selamat Datang di <span class="gradient-text">Sakti AI</span></h1>
+      <p class="subtitle">Asisten belajar pintar masa depan yang siap membantu Anda memahami berbagai materi dengan mudah, cepat, dan interaktif.</p>
+      
+      <button id="btn-start" class="btn-primary">
+        <span>Mulai Sekarang</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SCREEN 2: CHOOSE MATERIAL
+       ========================================== -->
+  <section id="screen-materials" class="screen">
+    <div class="glass-card main-card">
+      <div class="header">
+        <h2>Pilih Materi Belajar</h2>
+        <p>Materi apa yang ingin Anda eksplorasi dan lihat alur kerjanya hari ini?</p>
+      </div>
+      <div class="materials-grid">
+        <div class="material-card" data-subject="Matematika">
+          <div class="icon">📐</div>
+          <h3>Matematika</h3>
+        </div>
+        <div class="material-card" data-subject="Sains">
+          <div class="icon">🧬</div>
+          <h3>Sains</h3>
+        </div>
+        <div class="material-card" data-subject="Sejarah">
+          <div class="icon">🏛️</div>
+          <h3>Sejarah</h3>
+        </div>
+        <div class="material-card" data-subject="Bahasa">
+          <div class="icon">📝</div>
+          <h3>Bahasa</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SCREEN 3: MAIN APP DASHBOARD
+       ========================================== -->
+  <section id="screen-dashboard" class="screen">
+    <div class="app-container" id="app-dashboard">
+      <!-- Header Section -->
+      <header>
+        <div class="brand-section">
+          <button class="control-btn" id="btn-back-home" title="Kembali ke Beranda" style="width: 36px; height: 36px; margin-right: 0.5rem;">
+            <i class="ri-home-4-line"></i>
+          </button>
+          <div class="brand-icon">S</div>
+          <div class="brand-info">
+            <h1>Sakti AI <span>KMVPN 2026</span></h1>
+            <p>Sistem Visualisasi Alur Kerja & Data Flow Diagram</p>
+          </div>
+        </div>
+        
+        <!-- Nav Tabs for switching diagrams -->
+        <nav class="nav-tabs">
+          <button class="tab-btn active" data-tab="flowchart">
+            <i class="ri-git-commit-line"></i> Alur Kerja
+          </button>
+          <button class="tab-btn" data-tab="dfd0">
+            <i class="ri-bubble-chart-line"></i> DFD Level 0
+          </button>
+          <button class="tab-btn" data-tab="dfd1">
+            <i class="ri-node-tree"></i> DFD Level 1
+          </button>
+        </nav>
+      </header>
+
+      <!-- Main Dashboard Grid -->
+      <main class="dashboard-grid">
+        <!-- Left Panel: Diagram Workspace -->
+        <section class="diagram-panel" id="main-diagram-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <i class="ri-shape-line"></i>
+              <h2 id="diagram-title">Alur Kerja Sakti AI (Flowchart)</h2>
+            </div>
+            <div class="diagram-controls">
+              <button class="control-btn" id="btn-zoom-in" title="Perbesar"><i class="ri-zoom-in-line"></i></button>
+              <button class="control-btn" id="btn-zoom-out" title="Perkecil"><i class="ri-zoom-out-line"></i></button>
+              <button class="control-btn" id="btn-reset-view" title="Reset Tampilan"><i class="ri-refresh-line"></i></button>
+            </div>
+          </div>
+          
+          <!-- Viewport for SVG Diagrams -->
+          <div class="diagram-viewport" id="viewport">
+            
+            <!-- ==========================================
+                 DIAGRAM 1: FLOWCHART (ALUR KERJA)
+                 ========================================== -->
+            <div class="diagram-svg-container active" id="svg-flowchart">
+              <svg viewBox="0 0 600 840" width="100%" height="100%">
+                <defs>
+                  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="rgba(255, 255, 255, 0.35)"/>
+                  </marker>
+                  <marker id="arrow-active" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--color-indigo)"/>
+                  </marker>
+                </defs>
+
+                <!-- Grid Paths (Flowlines) -->
+                <path id="path-flow-1" class="flow-path active theme-indigo" d="M 300,55 L 300,90" marker-end="url(#arrow)"/>
+                <path id="path-flow-2" class="flow-path" d="M 300,145 L 300,180" marker-end="url(#arrow)"/>
+                <path id="path-flow-3" class="flow-path" d="M 300,235 L 300,270" marker-end="url(#arrow)"/>
+                <path id="path-flow-4" class="flow-path" d="M 300,325 L 300,360" marker-end="url(#arrow)"/>
+                <path id="path-flow-5" class="flow-path" d="M 300,415 L 300,450" marker-end="url(#arrow)"/>
+                <path id="path-flow-6" class="flow-path" d="M 300,505 L 300,540" marker-end="url(#arrow)"/>
+                <path id="path-flow-7" class="flow-path" d="M 300,595 L 300,630" marker-end="url(#arrow)"/>
+                <path id="path-flow-8" class="flow-path" d="M 300,685 L 300,720" marker-end="url(#arrow)"/>
+                <path id="path-flow-9" class="flow-path" d="M 300,775 L 300,800" marker-end="url(#arrow)"/>
+                
+                <!-- Loop path: Siswa bertanya kembali ke ketik pertanyaan -->
+                <path id="path-flow-loop" class="flow-path" d="M 400,747.5 C 500,747.5 500,297.5 415,297.5" marker-end="url(#arrow)"/>
+
+                <!-- Nodes -->
+                <!-- Mulai -->
+                <g id="flow-node-start" class="svg-node theme-indigo active" transform="translate(0, 0)">
+                  <rect x="230" y="20" width="140" height="35" rx="17.5" fill="rgba(99, 102, 241, 0.15)" stroke="var(--color-indigo)" stroke-width="1.5"/>
+                  <text x="300" y="42" class="node-title" font-size="13">Mulai</text>
+                </g>
+
+                <!-- Siswa membuka aplikasi -->
+                <g id="flow-node-step1" class="svg-node theme-indigo" transform="translate(0, 0)">
+                  <rect x="180" y="90" width="240" height="55" rx="8" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="300" y="115" class="node-title">Buka Aplikasi</text>
+                  <text x="300" y="130" class="node-desc">Siswa membuka aplikasi Sakti AI</text>
+                </g>
+
+                <!-- Siswa memilih menu pembelajaran -->
+                <g id="flow-node-step2" class="svg-node theme-purple" transform="translate(0, 0)">
+                  <rect x="180" y="180" width="240" height="55" rx="8" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="300" y="205" class="node-title">Pilih Menu</text>
+                  <text x="300" y="220" class="node-desc">Siswa memilih menu pembelajaran</text>
+                </g>
+
+                <!-- Siswa mengetik pertanyaan / pilih materi -->
+                <g id="flow-node-step3" class="svg-node theme-cyan" transform="translate(0, 0)">
+                  <rect x="170" y="270" width="260" height="55" rx="8" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="300" y="295" class="node-title">Input Pertanyaan / Materi</text>
+                  <text x="300" y="310" class="node-desc">Siswa mengetik pertanyaan / pilih materi</text>
+                </g>
+
+                <!-- Sistem mengirim permintaan ke AI Engine -->
+                <g id="flow-node-step4" class="svg-node theme-emerald" transform="translate(0, 0)">
+                  <rect x="160" y="360" width="280" height="55" rx="8" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="300" y="385" class="node-title">Kirim ke AI Engine</text>
+                  <text x="300" y="400" class="node-desc">Sistem mengirim permintaan ke AI Engine</text>
+                </g>
+
+                <!-- AI memproses pertanyaan -->
+                <g id="flow-node-step5" class="svg-node theme-purple" transform="translate(0, 0)">
+                  <rect x="180" y="450" width="240" height="55" rx="8" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="300" y="475" class="node-title">Proses Pertanyaan</text>
+                  <text x="300" y="490" class="node-desc">AI Engine memproses pertanyaan</text>
+                </g>
+
+                <!-- AI menghasilkan jawaban/materi -->
+                <g id="flow-node-step6" class="svg-node theme-indigo" transform="translate(0, 0)">
+                  <rect x="180" y="540" width="240" height="55" rx="8" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="300" y="565" class="node-title">Hasil Jawaban</text>
+                  <text x="300" y="580" class="node-desc">AI menghasilkan jawaban/materi</text>
+                </g>
+
+                <!-- Jawaban ditampilkan kepada siswa -->
+                <g id="flow-node-step7" class="svg-node theme-emerald" transform="translate(0, 0)">
+                  <rect x="180" y="630" width="240" height="55" rx="8" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="300" y="655" class="node-title">Tampilkan Jawaban</text>
+                  <text x="300" y="670" class="node-desc">Jawaban ditampilkan kepada siswa</text>
+                </g>
+
+                <!-- Siswa dapat bertanya kembali -->
+                <g id="flow-node-step8" class="svg-node theme-cyan" transform="translate(0, 0)">
+                  <rect x="180" y="720" width="240" height="55" rx="8" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="300" y="745" class="node-title">Tanya Kembali?</text>
+                  <text x="300" y="760" class="node-desc">Siswa dapat mengajukan pertanyaan baru</text>
+                </g>
+
+                <!-- Selesai -->
+                <g id="flow-node-end" class="svg-node theme-indigo" transform="translate(0, 0)">
+                  <rect x="230" y="800" width="140" height="35" rx="17.5" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="300" y="822" class="node-title" font-size="13">Selesai</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- ==========================================
+                 DIAGRAM 2: DFD LEVEL 0 (CONTEXT DIAGRAM)
+                 ========================================== -->
+            <div class="diagram-svg-container" id="svg-dfd0">
+              <svg viewBox="0 0 650 400" width="100%" height="100%">
+                <!-- Path Lines -->
+                <!-- Siswa -> Sakti AI (Top Curved) -->
+                <path id="path-dfd0-in" class="flow-path theme-cyan" d="M 180,180 C 260,110 380,110 440,170" marker-end="url(#arrow)"/>
+                <!-- Sakti AI -> Siswa (Bottom Curved) -->
+                <path id="path-dfd0-out" class="flow-path theme-purple" d="M 440,230 C 370,290 250,290 180,220" marker-end="url(#arrow)"/>
+
+                <!-- Labels for flows -->
+                <text x="305" y="115" class="flow-path-label" text-anchor="middle">Pertanyaan / Pilihan Materi</text>
+                <text x="305" y="285" class="flow-path-label" text-anchor="middle">Jawaban / Materi Belajar</text>
+
+                <!-- Siswa (External Entity) -->
+                <g id="dfd0-node-siswa" class="svg-node theme-purple" transform="translate(0, 0)">
+                  <!-- Modern outer boundary box -->
+                  <rect x="50" y="150" width="130" height="100" rx="8" fill="rgba(168, 85, 247, 0.05)" stroke="var(--color-purple)" stroke-width="2"/>
+                  <rect x="44" y="144" width="142" height="112" rx="12" fill="none" stroke="rgba(168, 85, 247, 0.2)" stroke-width="1"/>
+                  <text x="115" y="195" class="node-title" font-size="14">Siswa</text>
+                  <text x="115" y="215" class="node-desc" font-size="9" fill="rgba(168, 85, 247, 0.7)">[Entitas Eksternal]</text>
+                </g>
+
+                <!-- Sakti AI (Main Process) -->
+                <g id="dfd0-node-saktiai" class="svg-node theme-indigo" transform="translate(0, 0)">
+                  <!-- Dual concentric rings for process -->
+                  <circle cx="470" cy="200" r="60" fill="rgba(99, 102, 241, 0.08)" stroke="var(--color-indigo)" stroke-width="2"/>
+                  <circle cx="470" cy="200" r="54" fill="none" stroke="rgba(99, 102, 241, 0.2)" stroke-dasharray="4,4"/>
+                  <text x="470" y="190" class="node-title" font-size="15">0</text>
+                  <text x="470" y="208" class="node-title" font-size="14">Sakti AI</text>
+                  <text x="470" y="228" class="node-desc" font-size="8" fill="rgba(99, 102, 241, 0.7)">[Sistem Utama]</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- ==========================================
+                 DIAGRAM 3: DFD LEVEL 1 (DETAILED FLOW)
+                 ========================================== -->
+            <div class="diagram-svg-container" id="svg-dfd1">
+              <svg viewBox="0 0 800 600" width="100%" height="100%">
+                <!-- Flow Lines -->
+                <!-- Siswa to Process 1 (Login) -->
+                <path id="path-dfd1-siswa-p1" class="flow-path theme-cyan" d="M 100,230 L 100,85 L 210,85" marker-end="url(#arrow)"/>
+                <text x="105" y="105" class="flow-path-label">Login & Kredensial</text>
+
+                <!-- Process 1 <-> DB Pengguna -->
+                <path id="path-dfd1-p1-db1" class="flow-path theme-indigo" d="M 400,75 L 510,75" marker-end="url(#arrow)"/>
+                <path id="path-dfd1-db1-p1" class="flow-path theme-indigo" d="M 510,95 L 400,95" marker-end="url(#arrow)"/>
+                <text x="455" y="70" class="flow-path-label" text-anchor="middle">Cek User</text>
+                <text x="455" y="112" class="flow-path-label" text-anchor="middle">Validasi</text>
+
+                <!-- Process 1 -> Process 2 -->
+                <path id="path-dfd1-p1-p2" class="flow-path theme-purple" d="M 305,115 L 305,190" marker-end="url(#arrow)"/>
+                <text x="315" y="150" class="flow-path-label">Status Login</text>
+
+                <!-- Siswa to Process 2 (Pilih Materi) -->
+                <path id="path-dfd1-siswa-p2" class="flow-path theme-cyan" d="M 120,240 L 210,215" marker-end="url(#arrow)"/>
+                <text x="110" y="210" class="flow-path-label">Pilih Materi</text>
+
+                <!-- Process 2 <-> DB Materi -->
+                <path id="path-dfd1-p2-db2" class="flow-path theme-amber" d="M 400,205 C 445,205 470,215 510,250" marker-end="url(#arrow)"/>
+                <path id="path-dfd1-db2-p2" class="flow-path theme-amber" d="M 510,270 C 470,300 445,225 400,225" marker-end="url(#arrow)"/>
+                <text x="460" y="195" class="flow-path-label">Kueri Materi</text>
+                <text x="460" y="305" class="flow-path-label">Data Materi</text>
+
+                <!-- Process 2 -> Process 3 -->
+                <path id="path-dfd1-p2-p3" class="flow-path theme-purple" d="M 305,245 L 305,320" marker-end="url(#arrow)"/>
+                <text x="315" y="280" class="flow-path-label">Konteks</text>
+
+                <!-- Siswa to Process 3 (Proses AI) -->
+                <path id="path-dfd1-siswa-p3" class="flow-path theme-cyan" d="M 140,270 L 210,345" marker-end="url(#arrow)"/>
+                <text x="115" y="325" class="flow-path-label">Ketik Tanya</text>
+
+                <!-- Process 3 <-> DB Materi (Referensi) -->
+                <path id="path-dfd1-p3-db2" class="flow-path theme-amber" d="M 400,335 C 440,335 480,310 510,290" marker-end="url(#arrow)"/>
+                <text x="460" y="348" class="flow-path-label">Referensi</text>
+
+                <!-- Process 3 <-> DB AI (Riwayat / Chat Context) -->
+                <path id="path-dfd1-p3-db3" class="flow-path theme-emerald" d="M 400,355 L 510,395" marker-end="url(#arrow)"/>
+                <path id="path-dfd1-db3-p3" class="flow-path theme-emerald" d="M 510,415 L 400,370" marker-end="url(#arrow)"/>
+                <text x="460" y="380" class="flow-path-label">Simpan Log</text>
+                <text x="460" y="420" class="flow-path-label">Riwayat</text>
+
+                <!-- Process 3 -> Process 4 (Tampilkan Jawaban) -->
+                <path id="path-dfd1-p3-p4" class="flow-path theme-purple" d="M 305,375 L 305,450" marker-end="url(#arrow)"/>
+                <text x="315" y="410" class="flow-path-label">Jawaban Mentah</text>
+
+                <!-- Process 4 -> Siswa (Jawaban Hasil) -->
+                <path id="path-dfd1-p4-siswa" class="flow-path theme-purple" d="M 210,475 L 100,475 L 100,320" marker-end="url(#arrow)"/>
+                <text x="105" y="460" class="flow-path-label">Jawaban Belajar</text>
+
+                <!-- Nodes -->
+                <!-- Siswa (External Entity) -->
+                <g id="dfd1-node-siswa" class="svg-node theme-purple" transform="translate(0, 0)">
+                  <rect x="30" y="230" width="110" height="70" rx="6" fill="rgba(168, 85, 247, 0.05)" stroke="var(--color-purple)" stroke-width="1.5"/>
+                  <rect x="25" y="225" width="120" height="80" rx="10" fill="none" stroke="rgba(168, 85, 247, 0.15)" stroke-width="1"/>
+                  <text x="85" y="265" class="node-title" font-size="12">Siswa</text>
+                  <text x="85" y="280" class="node-desc" font-size="8" fill="rgba(168, 85, 247, 0.7)">Entitas Luar</text>
+                </g>
+
+                <!-- Process 1: Login & Verifikasi -->
+                <g id="dfd1-node-p1" class="svg-node theme-indigo" transform="translate(0, 0)">
+                  <rect x="210" y="60" width="190" height="55" rx="27.5" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="305" y="85" class="node-title" font-size="12">1.0 Login & Verifikasi</text>
+                  <text x="305" y="98" class="node-desc" font-size="8">Pengecekan Kredensial Siswa</text>
+                </g>
+
+                <!-- Process 2: Pilih Materi -->
+                <g id="dfd1-node-p2" class="svg-node theme-purple" transform="translate(0, 0)">
+                  <rect x="210" y="190" width="190" height="55" rx="27.5" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="305" y="215" class="node-title" font-size="12">2.0 Pilih Materi</text>
+                  <text x="305" y="228" class="node-desc" font-size="8">Navigasi Silabus & Topik</text>
+                </g>
+
+                <!-- Process 3: Proses AI Engine -->
+                <g id="dfd1-node-p3" class="svg-node theme-cyan" transform="translate(0, 0)">
+                  <rect x="210" y="320" width="190" height="55" rx="27.5" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="305" y="345" class="node-title" font-size="12">3.0 Proses AI Engine</text>
+                  <text x="305" y="358" class="node-desc" font-size="8">Generasi Jawaban & Konteks</text>
+                </g>
+
+                <!-- Process 4: Tampilkan Jawaban -->
+                <g id="dfd1-node-p4" class="svg-node theme-emerald" transform="translate(0, 0)">
+                  <rect x="210" y="450" width="190" height="55" rx="27.5" fill="rgba(18, 14, 38, 0.8)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                  <text x="305" y="475" class="node-title" font-size="12">4.0 Tampilkan Jawaban</text>
+                  <text x="305" y="488" class="node-desc" font-size="8">Format Output Pembelajaran</text>
+                </g>
+
+                <!-- Data Store 1: Database Pengguna -->
+                <g id="dfd1-node-db1" class="svg-node theme-indigo" transform="translate(0, 0)">
+                  <path d="M 520,60 L 720,60 M 520,110 L 720,110 M 555,60 L 555,110" stroke="var(--color-indigo)" stroke-width="1.5" fill="none"/>
+                  <rect x="520" y="60" width="200" height="50" fill="rgba(99, 102, 241, 0.03)" stroke="none"/>
+                  <text x="537" y="90" class="node-title" fill="var(--color-indigo)" font-size="12">D1</text>
+                  <text x="635" y="82" class="node-title" font-size="11">Database Pengguna</text>
+                  <text x="635" y="97" class="node-desc" font-size="8">Tabel: users, logs_auth</text>
+                </g>
+
+                <!-- Data Store 2: Database Materi -->
+                <g id="dfd1-node-db2" class="svg-node theme-amber" transform="translate(0, 0)">
+                  <path d="M 520,250 L 720,250 M 520,300 L 720,300 M 555,250 L 555,300" stroke="var(--color-amber)" stroke-width="1.5" fill="none"/>
+                  <rect x="520" y="250" width="200" height="50" fill="rgba(245, 158, 11, 0.03)" stroke="none"/>
+                  <text x="537" y="280" class="node-title" fill="var(--color-amber)" font-size="12">D2</text>
+                  <text x="635" y="272" class="node-title" font-size="11">Database Materi</text>
+                  <text x="635" y="287" class="node-desc" font-size="8">Tabel: lessons, categories</text>
+                </g>
+
+                <!-- Data Store 3: Database AI -->
+                <g id="dfd1-node-db3" class="svg-node theme-emerald" transform="translate(0, 0)">
+                  <path d="M 520,380 L 720,380 M 520,430 L 720,430 M 555,380 L 555,430" stroke="var(--color-emerald)" stroke-width="1.5" fill="none"/>
+                  <rect x="520" y="380" width="200" height="50" fill="rgba(16, 185, 129, 0.03)" stroke="none"/>
+                  <text x="537" y="410" class="node-title" fill="var(--color-emerald)" font-size="12">D3</text>
+                  <text x="635" y="402" class="node-title" font-size="11">Database AI</text>
+                  <text x="635" y="417" class="node-desc" font-size="8">Tabel: chat_history, embeddings</text>
+                </g>
+              </svg>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Right Column: Controls, Simulator & Details -->
+        <aside class="sidebar-panel">
+          
+          <!-- Simulator Card -->
+          <article class="sidebar-card simulator-card">
+            <div class="card-header">
+              <h3><i class="ri-play-circle-line"></i> Simulator Sakti AI</h3>
+              <span id="sim-indicator" class="detail-badge badge-proses">Off</span>
+            </div>
+            <div class="card-body">
+              
+              <!-- Step Icons / Progress -->
+              <div class="simulator-steps">
+                <div class="step-indicator active" id="indicator-step-1" data-step="1">1</div>
+                <div class="step-indicator" id="indicator-step-2" data-step="2">2</div>
+                <div class="step-indicator" id="indicator-step-3" data-step="3">3</div>
+                <div class="step-indicator" id="indicator-step-4" data-step="4">4</div>
+              </div>
+
+              <!-- Simulation Screen -->
+              <div class="sim-screen">
+                
+                <!-- Step 1: Login -->
+                <div class="sim-step-view active" id="sim-view-1">
+                  <div class="login-sim">
+                    <div class="sim-input-group">
+                      <label for="input-nisn">NISN Siswa</label>
+                      <input type="text" id="input-nisn" class="sim-input" placeholder="Contoh: 0081234567" value="0082910482">
+                    </div>
+                    <div class="sim-input-group">
+                      <label for="input-pass">Sandi / PIN</label>
+                      <input type="password" id="input-pass" class="sim-input" placeholder="••••••" value="123456">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 2: Pilih & Ketik -->
+                <div class="sim-step-view" id="sim-view-2">
+                  <div class="query-sim">
+                    <div class="sim-input-group">
+                      <label>Menu / Materi Pembelajaran</label>
+                      <div class="subject-grid">
+                        <button class="subject-btn active" data-subject="Matematika">Matematika</button>
+                        <button class="subject-btn" data-subject="Sains">Sains</button>
+                        <button class="subject-btn" data-subject="Sejarah">Sejarah</button>
+                        <button class="subject-btn" data-subject="Bahasa">Bahasa</button>
+                      </div>
+                    </div>
+                    <div class="sim-input-group">
+                      <label for="input-query">Ketik Pertanyaan</label>
+                      <input type="text" id="input-query" class="sim-input" placeholder="Masukkan pertanyaan Anda di sini..." value="Bagaimana cara menghitung volume kerucut jika diketahui jari-jari r = 7 cm dan tinggi t = 12 cm?">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 3: AI Processing -->
+                <div class="sim-step-view" id="sim-view-3">
+                  <div class="ai-processing">
+                    <div class="ai-core-visual">
+                      <div class="ai-pulse-ring"></div>
+                      <div class="ai-core-dot"><i class="ri-cpu-line"></i></div>
+                    </div>
+                    <div class="ai-status-text" id="sim-status-label">AI sedang menganalisis kueri...</div>
+                    <div class="sim-loader-bar">
+                      <div class="sim-loader-fill" id="sim-progress-fill"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 4: Jawaban -->
+                <div class="sim-step-view" id="sim-view-4">
+                  <div class="answer-sim">
+                    <div class="sim-chat-bubble">
+                      <div class="sim-chat-header">
+                        <span>Sakti AI Assistant</span>
+                        <span id="chat-badge-category">Matematika</span>
+                      </div>
+                      <div class="sim-chat-text" id="sim-response-text">
+                        Memuat jawaban...
+                      </div>
+                      <div class="sim-chat-meta">
+                        <span><i class="ri-shield-check-line"></i> Terverifikasi</span>
+                        <span>•</span>
+                        <span>Referensi: Database Materi Terpadu</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Simulator Control Actions -->
+              <div class="sim-controls">
+                <button class="sim-btn" id="btn-sim-reset">
+                  <i class="ri-restart-line"></i> Reset
+                </button>
+                <button class="sim-btn sim-btn-primary" id="btn-sim-next">
+                  Mulai Simulasi <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- Detail & Description Card -->
+          <article class="sidebar-card detail-card">
+            <div class="card-header">
+              <h3><i class="ri-information-line"></i> Detail & Penjelasan</h3>
+            </div>
+            <div class="card-body" id="detail-panel-body">
+              
+              <!-- Empty state when no node is selected -->
+              <div class="detail-empty-state" id="detail-empty">
+                <i class="ri-mouse-line"></i>
+                <p>Klik salah satu node proses, entitas, atau database pada diagram di sebelah kiri untuk melihat penjelasan teknis terperinci.</p>
+              </div>
+
+              <!-- Dynamic content loaded via JS -->
+              <div class="detail-content" id="detail-content">
+                <div class="detail-title-row">
+                  <span class="detail-badge" id="detail-node-type">Proses</span>
+                  <span class="detail-name" id="detail-node-name">1.0 Login & Verifikasi</span>
+                </div>
+                
+                <p class="detail-desc" id="detail-node-desc">
+                  Deskripsi lengkap mengenai komponen yang diklik. Komponen ini bertanggung jawab untuk memvalidasi identitas siswa saat mengakses platform Sakti AI.
+                </p>
+
+                <div>
+                  <h4 class="detail-section-title">Aliran Data Terkait</h4>
+                  <ul class="data-flow-list" id="detail-node-flows">
+                    <li class="data-flow-item flow-in">
+                      <i class="ri-arrow-right-circle-line"></i>
+                      <span>Kredensial Siswa (NISN + Sandi)</span>
+                    </li>
+                    <li class="data-flow-item flow-out">
+                      <i class="ri-arrow-left-circle-line"></i>
+                      <span>Kueri Verifikasi & Status Validasi</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="detail-meta-grid">
+                  <div class="meta-box">
+                    <div class="meta-box-label">Aktor Utama</div>
+                    <div class="meta-box-val" id="detail-meta-actor">Siswa & Sistem</div>
+                  </div>
+                  <div class="meta-box">
+                    <div class="meta-box-label">Keamanan Data</div>
+                    <div class="meta-box-val" id="detail-meta-security">SHA-256 Hashing</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+        </aside>
+      </main>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
